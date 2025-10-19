@@ -1,4 +1,4 @@
-import { sum } from "./math";
+import { sum } from "./sum.js";
 const button = document.getElementById("button");
 const resultEl = document.getElementById("result");
 
