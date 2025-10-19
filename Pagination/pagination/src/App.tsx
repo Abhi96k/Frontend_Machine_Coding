@@ -1,44 +1,31 @@
-import { useEffect, useState, type ReactElement } from "react";
-import styles from "./styles.ts";
-
-interface Post {
-  userId: number;
-  id: number;
-  title: string;
-  body: string;
-}
-
-function App(): ReactElement {
-  const [posts, setPosts] = useState<Post[]>([]);
-  const [currentPage, setCurrentPage] = useState<number>(1);
-  const [loading, setLoading] = useState<boolean>(false);
-  const postsPerPage = 10;
+import { useEffect, useState } from "react";
+import styles from "./styles";
+function App() {
+  const [posts, setPosts] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [loading, setLoading] = useState(false);
+  const [postsPerPage] = useState(10);
 
   useEffect(() => {
-    // fetch posts once on mount
     const fetchPosts = async () => {
-      try {
-        setLoading(true);
-        const data = await fetch("https://jsonplaceholder.typicode.com/posts");
-        const postsJson: Post[] = await data.json();
-        setPosts(postsJson);
-      } finally {
-        setLoading(false);
-      }
+      setLoading(true);
+      const data = await fetch("https://jsonplaceholder.typicode.com/posts");
+      const posts = await data.json();
+      setPosts(posts);
+      setLoading(false);
     };
-
     fetchPosts();
-  }, []);
+  }, [currentPage]);
 
-  const totalPages = Math.max(1, Math.ceil(posts.length / postsPerPage));
   const indexOfLastItem = currentPage * postsPerPage;
   const indexOfFirstItem = indexOfLastItem - postsPerPage;
   const currentPosts = posts.slice(indexOfFirstItem, indexOfLastItem);
 
-  const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
+  const PageChange = (pageNumber: number) => setCurrentPage(pageNumber);
+  const totalPages = Math.ceil(posts.length / postsPerPage);
 
   if (loading) {
-    return <h2 style={{ textAlign: "center", marginTop: 40 }}>Loading...</h2>;
+    return <h2 className="text-center mt-10">Loading...</h2>;
   }
 
   return (
@@ -48,12 +35,13 @@ function App(): ReactElement {
       <ul style={styles.list}>
         {currentPosts.map((post) => (
           <li key={post.id} style={styles.card}>
-            <h3 style={styles.cardTitle}>{post.title}</h3>
-            <p style={styles.cardBody}>{post.body}</p>
+            <h3>{post.title}</h3>
+            <p>{post.body}</p>
           </li>
         ))}
       </ul>
 
+      {/* Pagination Controls */}
       <div style={styles.pagination}>
         <button
           onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
