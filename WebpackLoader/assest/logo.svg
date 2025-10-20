@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="256" height="256" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Logo">
+  <rect width="256" height="256" rx="32" fill="#1E293B" />
+  <g transform="translate(48 48)" fill="none" stroke="#F8FAFC" stroke-width="12" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="80" cy="80" r="60" opacity="0.12" fill="#F8FAFC" />
+    <path d="M22 80c18-28 54-28 72 0s54 28 72 0" stroke-opacity="0.95" />
+    <path d="M80 20v120" stroke-opacity="0.95" />
+  </g>
+</svg>
