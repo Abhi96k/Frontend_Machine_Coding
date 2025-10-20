@@ -8,10 +8,6 @@ module.exports = {
   },
   module: {
     rules: [
-      {
-        test: /\.css$/i,
-        use: ["style-loader", "css-loader"],
-      },
       // Add asset handling for images so imports like `import logo from './assest/logo.svg'`
       // resolve correctly with webpack 5. This emits files to the output
       // and returns the final public path.
@@ -21,6 +17,10 @@ module.exports = {
         generator: {
           filename: "images/[hash][ext][query]",
         },
+      },
+      {
+        test: /\.css$/i,
+        use: ["style-loader", "css-loader"],
       },
     ],
   },
