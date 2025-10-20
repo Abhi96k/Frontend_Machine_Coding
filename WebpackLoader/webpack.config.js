@@ -18,6 +18,14 @@ module.exports = {
           filename: "images/[hash][ext][query]",
         },
       },
+      // Handle webfonts and binary font files (.ttf, .woff, .woff2, .eot)
+      {
+        test: /\.(woff2?|eot|ttf|otf)$/i,
+        type: "asset/resource",
+        generator: {
+          filename: "fonts/[hash][ext][query]",
+        },
+      },
       {
         test: /\.css$/i,
         use: ["style-loader", "css-loader"],

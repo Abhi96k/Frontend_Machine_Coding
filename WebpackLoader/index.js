@@ -6,6 +6,7 @@ import image1 from "./assest/image1.svg";
 import image2 from "./assest/image2.svg";
 import thumbnail from "./assest/thumbnail.svg";
 import "./Style/Style.css";
+import "./Font/BBHSansHegarty-Regular.ttf";
 
 document.addEventListener("DOMContentLoaded", () => {
   const toast = document.getElementById("toast");
